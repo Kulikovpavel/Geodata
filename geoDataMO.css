@@ -1,0 +1,23 @@
+/* CSS declarations go here */
+#geotableDiv {
+	width: 80%;
+	float: left;
+}
+
+#svg {
+	width: 100%;
+	height: window.height;
+}
+
+#tooltip {   
+	position: absolute;           
+	text-align: center;          
+	height: 25px;                 
+	/*padding: 2px;             */
+	font-size: 12px;     
+	background: #000000;
+	color: #FFFFFF;
+	border: 1px;              
+	pointer-events: none;   
+	opacity: 0;      
+}   

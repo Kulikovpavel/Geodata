@@ -1,0 +1,46 @@
+<head>
+  <title>Геодата Московской области</title>
+</head>
+
+<body>
+  {{> geotable}}
+  {{> hello}}
+  {{> geotables_list}}
+</body>
+
+<template name="geotable">
+  <div id='tooltip'></div>
+  <div id='geotableDiv'>
+    <svg id='svg'/>
+  	<table id='geotableTable'></table>
+  	{{geotable.name}}
+  </div>
+</template>
+
+<template name="hello">
+  <h1>Hello World!</h1>
+  {{greeting}}
+  <div>
+    <input type='text' id="jsonText"/>
+    <button value="Click" >Добавить</button>
+  </div>
+</template>
+
+<template name="geotables_list">
+  {{#each geotables}}
+  	<ul>
+  	  {{> geotableString}}
+  	</ul>
+  {{/each}}
+</template>
+
+<template name="geotableString">
+  <li>
+  	{{name}}
+  </li>
+</template>
+
+
+
+
+
