@@ -5,6 +5,13 @@
 
 standard-app-packages
 autopublish
-insecure
 preserve-inputs
 d3
+backbone
+accounts-password
+accounts-ui
+accounts-facebook
+accounts-github
+accounts-google
+accounts-twitter
+
