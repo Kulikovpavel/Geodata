@@ -11,14 +11,5 @@ accounts-password
 accounts-ui
 accounts-facebook
 accounts-github
-accounts-google
 accounts-twitter
-
-jquery
-underscore
-deps
-jquery
-mongo-livedata
-livedata
-session
-templating
+standard-app-packages

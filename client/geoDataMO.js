@@ -50,6 +50,12 @@ Template.geotable.events({
   }
 });
 
+Template.geotable.helpers({
+  isOwner: function () {
+    return Meteor.userId() === this.owner;
+  }
+});
+
 Template.table_edit.events = {
   'click button[type=submit]': function(e) {
     e.preventDefault();

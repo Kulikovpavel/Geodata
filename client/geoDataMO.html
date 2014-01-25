@@ -44,8 +44,11 @@
       
       <svg id='svg'/>
       <p>{{title}}<p>
+      {{#if isOwner}}
+        <button class='btn btn-primary edit-button'>Редактировать</button>
+      {{/if}}
     	<table class="table" id='geotableTable'></table>
-      <button class='edit-button'>Редактировать</button>
+     
     </div>
 </template>
 
