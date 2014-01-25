@@ -3,7 +3,6 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-standard-app-packages
 autopublish
 preserve-inputs
 d3
@@ -14,3 +13,14 @@ accounts-facebook
 accounts-github
 accounts-google
 accounts-twitter
+
+jquery
+underscore
+check
+deps
+jquery
+mongo-livedata
+livedata
+session
+templating
+webapp
