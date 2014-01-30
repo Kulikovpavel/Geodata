@@ -44,6 +44,7 @@
       
       <svg id='svg'/>
       <p>{{title}}<p>
+      <p>{{link}}
       {{#if isOwner}}
         <button class='btn btn-primary edit-button'>Редактировать</button>
       {{/if}}
@@ -89,6 +90,20 @@
       <label>Ссылка на источник</label>
       <input id="url" class="form-control" type="text" value="{{url}}" />
     </div>
+    
+    <div class="radio">
+      <label>
+        <input type="radio" name="optionsRadios" id="order1" value="option1" {{#if dataOrder}} {{else}}checked{{/if}}>
+        Чем больше число - тем лучше
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <input type="radio" name="optionsRadios" id="order2" value="option2" {{#if dataOrder}}checked{{/if}}>
+        Чем меньше число - тем лучше      
+      </label>
+    </div>
+
     <div class="form-group">
       <label>Данные</label>
       <textarea id="json" rows="20" class="form-control" value="" class="input-xlarge">{{json}}</textarea>
@@ -98,8 +113,19 @@
       <button type="submit" class="btn btn-primary" >Сохранить</button>
     </div>
   </form>
+  {{> howto}}
 </template>
 
+<template name='howto'>
+    <p>
+      Подсказка
+      <br>
+      В качестве входных данных передается объект json, который из себя представляет массив массивов с названием образования и числовыми данными. <a href='http://geodata.istra-da.ru/data.json' target="_blank">Образец</a>.
+      <br>
+      Получить json из электронной таблицы можно, например, на этом сайте: <a href='http://shancarter.github.io/mr-data-converter/' target="_blank">Mr. Data Converter</a>, выбрав вывод как JSON - Row Arrays
+      Имена районов и округов должны совпадать с файлом - образцом.
+    </p>
+</template>
 
 
 

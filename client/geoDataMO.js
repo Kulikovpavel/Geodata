@@ -20,7 +20,12 @@ Template.geotables_list.events({
     Session.set('sessionSearchString', e.srcElement.value);
   },
   'click button' : function () {
-    Session.set("geotableEditID", -1);  // new data
+    if (!Meteor.user()) {
+      alert("Для добавления таблицы - зарегистрируйтесь")
+      return
+    } else {
+      Session.set("geotableEditID", -1);  // new data
+    }
   }
 });
 
@@ -45,29 +50,31 @@ Template.mainpage.isEdit = function() {
 
 Template.geotable.events({
  'click .edit-button' : function () {
-    console.log(Session.get("geotableShowID"));
     Session.set('geotableEditID', Session.get("geotableShowID"));
   }
 });
 
 Template.geotable.helpers({
   isOwner: function () {
-    return Meteor.userId() === this.owner;
+    return Meteor.userId() && (Meteor.userId() === this.owner || checkAdminEmail())
   }
 });
+
 
 Template.table_edit.events = {
   'click button[type=submit]': function(e) {
     e.preventDefault();
 
     var editedGeotableId = Session.get('geotableEditID');
-
     var properties = {
       title:         $('#title').val(),
       url:           $('#url').val(),
       json:          $('#json').val(),
-      owner:         Meteor.userId()
+      dataOrder:     document.getElementById('order2').checked  // 0 if more is better, 1 if less if better
     };
+    if (!checkAdminEmail()) {  // if not admin - change owner
+      properties['owner'] = Meteor.userId() 
+    }
 
     if (editedGeotableId == -1) {
       var result = Geotables.insert(properties, function(error, id) {
@@ -79,7 +86,6 @@ Template.table_edit.events = {
           Router.setPath(id); 
         }
       });
-      //Router.setPath(result); 
     } else {
         Geotables.update(editedGeotableId, {$set: properties}, function(error, id) {
           if (error) {
@@ -126,6 +132,11 @@ Meteor.startup(function () {
 });
 
 
+Template.login_ui.rendered = function(){
+  $('#login-sign-in-link').text('Регистрация ▾');
+  $('.login-close-text').text('Закрыть');
+};
+
 
 function showSvg(geotable) {
   Array.max = function( array ){
@@ -150,10 +161,11 @@ function showSvg(geotable) {
     var value = e[1];
 
     dataValues.push(value);
-    dataDict[name] = value;  // json have list of [name, date] lists
+    dataDict[name] = value;  // json have list of [name, data] lists
   });
 
-  sortableData.sort(function(a, b) {return a[1] - b[1]}).reverse();
+  sortableData.sort(function(a, b) {return a[1] - b[1]});
+  if (!geotable.dataOrder) {sortableData.reverse()};
 
   svgElem = document.getElementById('svg');
   var width  = svgElem.getBoundingClientRect().width;
@@ -161,7 +173,8 @@ function showSvg(geotable) {
 
   d3.json("mosobl.json", function(json) {
 
-    var colorsArray = colorbrewer.Purples[9].slice(0).reverse();  // slice - copy of array, because reverse - mutable
+    var colorsArray = colorbrewer.Purples[9].slice(0);  // slice - copy of array, because reverse - mutable
+    if (!geotable.dataOrder) {colorsArray.reverse()};
 
     var color = d3.scale.quantize() // set color range function
     .domain([Array.min(dataValues), Array.max(dataValues)])
