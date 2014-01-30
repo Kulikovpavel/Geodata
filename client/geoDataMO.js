@@ -40,6 +40,7 @@ Template.mainpage.geotableConcrete = function() {
 };
 
 Template.geotable.rendered = function() {
+  document.title = "Геоданные: " + this.data.title;
   showSvg(this.data);  
 }
 
@@ -157,7 +158,7 @@ function showSvg(geotable) {
   }
   sortableData = json;
   json.forEach(function(e) {
-    var name = e[0].trim();
+    var name = e[0].trim().replace("ё", "е");
     var value = e[1];
 
     dataValues.push(value);
@@ -211,7 +212,7 @@ function showSvg(geotable) {
     svg.selectAll("path").data(json.features).enter().append("path")
     .attr("d", path)
     .style("fill", function(d) {
-      return color(dataDict[d.properties.NAME]); 
+      return color(dataDict[d.properties.NAME.replace("ё", "е")]); 
     })
     .style("stroke-width", "1")
     .style("stroke", "black")
@@ -221,6 +222,8 @@ function showSvg(geotable) {
     .on("mouseover", function(d) {
       d3.select(this).style("opacity", 1);
       var name = d.properties.NAME;
+      name = name.replace("ё", "е");
+
       if(!(name in dataDict)){
         console.log(name + " не найден в данных");
       }

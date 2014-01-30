@@ -9,7 +9,4 @@ d3
 backbone
 accounts-password
 accounts-ui
-accounts-facebook
-accounts-github
-accounts-twitter
 standard-app-packages

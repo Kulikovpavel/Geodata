@@ -1,6 +1,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Геодата Московской области</title>
+  <title>Сервис визуализации геоданных Московской области</title>
+  <meta charset="utf-8"> 
 </head>
 
 <body>
@@ -43,8 +44,7 @@
     <div id='geotableDiv'>
       
       <svg id='svg'/>
-      <p>{{title}}<p>
-      <p>{{link}}
+      <p><a href="{{url}}" target="_blank">{{title}}</a></p>
       {{#if isOwner}}
         <button class='btn btn-primary edit-button'>Редактировать</button>
       {{/if}}
@@ -123,6 +123,7 @@
       В качестве входных данных передается объект json, который из себя представляет массив массивов с названием образования и числовыми данными. <a href='http://geodata.istra-da.ru/data.json' target="_blank">Образец</a>.
       <br>
       Получить json из электронной таблицы можно, например, на этом сайте: <a href='http://shancarter.github.io/mr-data-converter/' target="_blank">Mr. Data Converter</a>, выбрав вывод как JSON - Row Arrays
+      <br>
       Имена районов и округов должны совпадать с файлом - образцом.
     </p>
 </template>
