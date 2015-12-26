@@ -1,18 +1,19 @@
-#tooltip {   
-	position: absolute;           
-	text-align: center;          
-	height: 25px;                 
+#tooltip {
+	position: absolute;
+	text-align: center;
+	height: 25px;
 	/*padding: 2px;             */
-	font-size: 12px;     
+	font-size: 12px;
 	background: #000000;
 	color: #FFFFFF;
-	border: 1px;              
-	pointer-events: none;   
-	opacity: 0;      
+	border: 1px;
+	pointer-events: none;
+	opacity: 0;
 }
 
 #svg {
-	height: 700px;
+	height: 800px;
+	width: 100%;
 }
 
 .spacer {

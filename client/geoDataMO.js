@@ -36,15 +36,15 @@ Template.mainpage.geotableConcrete = function() {
     } else {
       table = Geotables.findOne(Session.get('geotableShowID'));
     }
-    return table   
+    return table
 };
 
 Template.geotable.rendered = function() {
   document.title = "Геоданные: " + this.data.title;
-  showSvg(this.data);  
+  showSvg(this.data);
 }
 
-Template.mainpage.isEdit = function() {    
+Template.mainpage.isEdit = function() {
   var id = Session.get('geotableEditID');
   return id
 };
@@ -74,7 +74,7 @@ Template.table_edit.events = {
       dataOrder:     document.getElementById('order2').checked  // 0 if more is better, 1 if less if better
     };
     if (!checkAdminEmail()) {  // if not admin - change owner
-      properties['owner'] = Meteor.userId() 
+      properties['owner'] = Meteor.userId()
     }
 
     if (editedGeotableId == -1) {
@@ -84,7 +84,7 @@ Template.table_edit.events = {
         }
         else {
           Session.set('geotableEditID', undefined);
-          Router.setPath(id); 
+          Router.setPath(id);
         }
       });
     } else {
@@ -97,7 +97,7 @@ Template.table_edit.events = {
         });
     };
 
-    
+
   },
   'click .delete-link': function(e) {
     e.preventDefault();
@@ -118,7 +118,7 @@ routes: {
 main: function (table_id) {
   var oldTable = Session.get("geotableShowID");
   if (oldTable !== table_id) {
-    Session.set("geotableShowID", table_id); 
+    Session.set("geotableShowID", table_id);
   }
 },
 setPath: function (table_id) {
@@ -212,7 +212,7 @@ function showSvg(geotable) {
     svg.selectAll("path").data(json.features).enter().append("path")
     .attr("d", path)
     .style("fill", function(d) {
-      return color(dataDict[d.properties.NAME.replace("ё", "е")]); 
+      return color(dataDict[d.properties.NAME.replace("ё", "е")]);
     })
     .style("stroke-width", "1")
     .style("stroke", "black")
@@ -241,7 +241,7 @@ function showSvg(geotable) {
     var theTable = "";
     for(var j=0;j<sortableData.length;j++){
       theTable += '<tr>';
-      for(var k=0;k<2;k++){             
+      for(var k=0;k<2;k++){
         theTable += '<td>'+sortableData[j][k]+'</td>';
       }
       theTable += '</tr>';

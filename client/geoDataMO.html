@@ -1,7 +1,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Сервис визуализации геоданных Московской области</title>
-  <meta charset="utf-8"> 
+  <meta charset="utf-8">
 </head>
 
 <body>
@@ -40,16 +40,16 @@
 </template>
 
 <template name="geotable">
-    
+
     <div id='geotableDiv'>
-      
+
       <svg id='svg'/>
       <p><a href="{{url}}" target="_blank">{{title}}</a></p>
       {{#if isOwner}}
         <button class='btn btn-primary edit-button'>Редактировать</button>
       {{/if}}
     	<table class="table" id='geotableTable'></table>
-     
+
     </div>
 </template>
 
@@ -72,7 +72,7 @@
       	</a>
       {{/each}}
     </div>
-  <div>
+  </div>
 </template>
 
 <template name="geotableString">
@@ -90,23 +90,25 @@
       <label>Ссылка на источник</label>
       <input id="url" class="form-control" type="text" value="{{url}}" />
     </div>
-    
+
     <div class="radio">
       <label>
-        <input type="radio" name="optionsRadios" id="order1" value="option1" {{#if dataOrder}} {{else}}checked{{/if}}>
+        <input type="radio" name="optionsRadios" id="order1" value="option1">
+        <!-- {{#if dataOrder}} {{else}}checked{{/if}} -->
         Чем больше число - тем лучше
       </label>
     </div>
     <div class="radio">
       <label>
-        <input type="radio" name="optionsRadios" id="order2" value="option2" {{#if dataOrder}}checked{{/if}}>
-        Чем меньше число - тем лучше      
+        <input type="radio" name="optionsRadios" id="order2" value="option2" >
+        <!-- {{#if dataOrder}}checked{{/if}} -->
+        Чем меньше число - тем лучше
       </label>
     </div>
 
     <div class="form-group">
       <label>Данные</label>
-      <textarea id="json" rows="20" class="form-control" value="" class="input-xlarge">{{json}}</textarea>
+      <textarea id="json" rows="20" class="form-control input-xlarge" value="">{{json}}</textarea>
     </div>
     <div class="form-actions">
       <a class ='btn btn-danger delete-link' href="/posts/deleted">Удалить</a>
@@ -127,7 +129,3 @@
       Имена районов и округов должны совпадать с файлом - образцом.
     </p>
 </template>
-
-
-
-
